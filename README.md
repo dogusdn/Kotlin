@@ -47,8 +47,114 @@ fun someFun() {
 * Char는 문자를 표현하는 타입으로, 코틀린 코드에서 Char 타입의 데이터는 문자를 작은 따옴표(')로 감싸서 표현
 * Number 타입으로 표현할 수 없다.
 ```kotlin
-val a: Char = 'a'
+val str1: Char = 'a'
 if (a == 1) { // 오류!
 }
+
+val str2 = """
+     Hello
+     World
+"""
 ```
+
+
+### Any - 모든 타입 가능
+* Any는 코틀린에서 최상위 클래스
+* 모든 코틀린의 클래스는 Any의 하위 클래스이다.
+  * 따라서 Any 타입으로 선언한 변수에는 모든 타입의 데이터를 할당 가능하다.
+```kotlin
+val data1: Any = 10
+val data2: Any = "Hello"
+
+class User
+val data3: Any = User()
+```
+
+### Unit - 반환문이 없는 함수
+* 함수에서 반환문이 없음을 명시적으로 나타낼 때 Unit 타입을 사용한다.
+```kotlin
+fun some(): Unit {
+ println(10 + 20)
+}
+ 
+// 함수 선언시 반환 타입 생략하면 자동으로 Unit 타입!
+
+fun some() {
+ println(10 + 20)
+}
+```
+
+### Nothing - null 이나 예외를 반환하는 함수
+* Nothing 으로 선언한 변수에는 null만 대입할 수 있다.
+* Nothing 으로 선언한 변수는 데이터로서는 의미가 없다.
+```kotlin
+val data1: Nothing? = null
+
+fun some1(): Nothing? {
+ return null
+}
+fun some2(): Nothing {
+ throw Exxception()
+}
+```
+
+* 어떤 함수의 반환 타입이 Nothing 이면 반환은 하지만 의미 있는 값은 아니다.
+* 항상 null만 반환하는 함수라든가 예외를 던지는 함수
+
+
+### 널 허용과 불허용
+* 코틀린의 모든 타입은 객체이므로 변수에 null을 대입할 수 있다.
+* null 은 값이 할당되지 않은 상황을 의미
+* 코틀린에서 변수를 선언할 때 null을 대입할 수 있는 변수인지, 대입할 수 없는 변수인지 구분해서 선언
+```kotlin
+var data1: Int = 10 // null 불허용
+data1 = null // 오류!
+
+var data2: Int? = 10
+data2 = null // 성공!
+```
+* 타입 뒤에 물음표(?) 를 추가하면 널허용 // 추가하지 않으면 불허용
+
+
+### 함수 선언하기
+* 코틀린에서 함수를 선언하려면 fun 이라는 키워드를 이용
+```kotlin
+fun 함수명(매개변수명: 타입): 반환 타입 { ... }
+```
+
+* 함수에는 반환 타입을 선언할 수 있으며 생략하면 자동으로 Unit 타입이 적용된다.
+```kotlin
+// 반환 타입이 있는 함수 선언
+fun some(data1: Int): Int {
+ return data1 * 10
+}
+```
+
+* 함수의 매개변수에는 var / var 키워드를 사용 불가능
+* val 이 자동으로 적용되며 함수 안에서 매개변숫값을 변경 할 수 없다.
+```kotlin
+// 매개변수값 변경 오류
+fun some(data1: Int) {
+ data1 = 20  // 오류 !
+}
+```
+
+#### 매개변수명 지정해서 호출
+```kotlin
+// 매개변수명 생략 - 매개변수 순서대로 할당
+fun some(data1: Int, data2: Int): Int {
+ return data1 * data2
+}
+println(some(10,20))
+
+// 매개변수명을 지정하여 호출함
+some(data2 = 20, data1 = 10)
+```
+* 매개변수명을 지정하여 호출하는 것을 명명된 매개변수라고 한다.
+* 이렇게 하면 함수 선언문의 매개변수 순서에 맞춰 호출 하지 않아도 된다.
+
+
+## 컬렉션 타입
+* 컬렉션 타입이란 여러 개의 데이터를 표현하는 방법이며 Array, List, Set, Map 등이 있다.
+* 
 
