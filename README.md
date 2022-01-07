@@ -156,5 +156,28 @@ some(data2 = 20, data1 = 10)
 
 ## 컬렉션 타입
 * 컬렉션 타입이란 여러 개의 데이터를 표현하는 방법이며 Array, List, Set, Map 등이 있다.
-* 
+
+### Array - 배열표현
+```kotlin
+// 배열 선언의 예
+val data1: Array<Int> = Array(3, { 0 })
+```
+* 0으로 초기화 한 데이터를 3개 나열한 정수형 배열을 선언
+
+
+### arrayOf() - 배열을 선언할 때 값을 할당
+```kotlin
+fun main() {
+ val data1 = arrayOf<Int>(10, 20, 30) // 크기가 3인 Int 배열을 선언하고 10, 20, 30으로 할당
+println(
+ """
+  array size : ${data1.size}
+  array data : ${data1[0]}, ${data1[1]}, ${data1.get(2)}
+ """
+ )
+}
+```
+* 배열 선언과 동시에 값을 할당할 수 있다.
+
+
 
